@@ -30,7 +30,7 @@ public class CalendarioClient {
     }
 
     public List<Calendario> obtenerCalendario(int year) {
-        String url = "http://localhost:3030/api/festivos/calendario/" + year;
+        String url = "http://dockerApiFestivos:3030/api/festivos/calendario/" + year;
         CalendarioDto[] fechas = restTemplate.getForObject(url, CalendarioDto[].class);
 
         if (fechas == null || fechas.length == 0) {

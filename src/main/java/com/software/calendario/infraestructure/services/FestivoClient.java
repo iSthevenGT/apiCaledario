@@ -12,7 +12,7 @@ public class FestivoClient {
 
     public List<FestivoDTO> obtenerFestivos(int year) {
         RestTemplate restTemplate = new RestTemplate();
-        String url = "http://localhost:3030/api/festivos/obtener/";
+        String url = "http://dockerApiFestivos:3030/api/festivos/obtener/";
         FestivoDTO[] festivos = restTemplate.getForObject(url + year, FestivoDTO[].class);
         assert festivos != null;
         return Arrays.asList(festivos);

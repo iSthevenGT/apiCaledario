@@ -70,11 +70,48 @@
 			<artifactId>spring-webflux</artifactId>
 			<version>6.1.13</version>
 		</dependency>
-
 	</dependencies>
 
 	<build>
+
+		<resources>
+			<!-- Filtrar otros recursos, excluyendo application.properties -->
+			<resource>
+				<directory>src/main/resources</directory>
+				<excludes>
+					<exclude>**/application.properties</exclude>
+				</excludes>
+				<filtering>true</filtering>
+			</resource>
+			<!-- Incluir application.properties sin filtrado -->
+			<resource>
+				<directory>src/main/resources</directory>
+				<includes>
+					<include>**/application.properties</include>
+				</includes>
+				<filtering>false</filtering>
+			</resource>
+		</resources>
+
 		<plugins>
+			<!-- Plugin de recursos con codificación UTF-8 -->
+			<plugin>
+				<artifactId>maven-resources-plugin</artifactId>
+				<version>3.3.1</version>
+				<configuration>
+					<encoding>UTF-8</encoding>
+					<nonFilteredFileExtensions>
+						<nonFilteredFileExtension>properties</nonFilteredFileExtension>
+					</nonFilteredFileExtensions>
+				</configuration>
+			</plugin>
+
+			<!-- Plugin de Spring Boot -->
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
@@ -89,5 +126,4 @@
 			</plugin>
 		</plugins>
 	</build>
-
 </project>
