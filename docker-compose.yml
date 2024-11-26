@@ -1,0 +1,15 @@
+version: '3.9'
+services:
+  springapi:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: dockerApiCalendario
+    ports:
+      - "3001:8080"
+    networks:
+      - redApiFestivos
+
+networks:
+  redApiFestivos:
+    external: true
